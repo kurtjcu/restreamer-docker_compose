@@ -1,0 +1,59 @@
+
+
+version: '2'
+services:
+    restreamer01:
+        image: datarhei/restreamer
+        ports:
+            - "8081:8080"
+            - "8091:1935"
+        volumes:
+            - "~/db01:/restreamer/db"
+        environment:
+          - RS_USERNAME=admin
+          - RS_PASSWORD={pass}
+          - RS_LOGLEVEL=4
+          - RS_TIMEZONE=Australia/Brisbane
+          - RS_SNAPSHOT_INTERVAL=1m
+          
+    restreamer02:
+        image: datarhei/restreamer
+        ports:
+            - "8082:8080"
+            - "8092:1935"
+        volumes:
+            - "~/db02:/restreamer/db"
+        environment:
+          - RS_USERNAME=admin
+          - RS_PASSWORD={pass}
+          - RS_LOGLEVEL=4
+          - RS_TIMEZONE=Australia/Brisbane
+          - RS_SNAPSHOT_INTERVAL=1m
+          
+    restreamer03:
+        image: datarhei/restreamer
+        ports:
+            - "8083:8080"
+            - "8093:1935"
+        volumes:
+            - "~/db03:/restreamer/db"
+        environment:
+          - RS_USERNAME=admin
+          - RS_PASSWORD={pass}
+          - RS_LOGLEVEL=4
+          - RS_TIMEZONE=Australia/Brisbane
+          - RS_SNAPSHOT_INTERVAL=1m
+          
+    Server:
+        image: datarhei/restreamer
+        ports:
+            - "8080:8080"
+            - "8090:1935"
+        volumes:
+            - "~/db00:/restreamer/db"
+        environment:
+          - RS_USERNAME=admin
+          - RS_PASSWORD={pass}
+          - RS_LOGLEVEL=4
+          - RS_TIMEZONE=Australia/Brisbane
+          - RS_SNAPSHOT_INTERVAL=1m
